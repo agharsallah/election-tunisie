@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>TunisieElection</title>
+    <!-- bootstrap -->
+     <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+    <!-- map -->
+     <link rel="stylesheet" href="/css/leaflet.css"/>
+     <link rel="stylesheet" href="/css/leaflet-search.css">
+     <!-- highchart -->
+     <script src="http://code.highcharts.com/highcharts.js"></script>
+    <!-- mystyle -->
+<!--    <link rel="stylesheet" href="/css/widget.css">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/404.css">-->
+    <link rel="stylesheet" href="/css/main.css">
+    <link href="/css/font-awesome.min.css" rel="stylesheet">
+
+    <link rel="shortcut icon" type="image/x-icon"  href="/img/favicon.ico" />
+
+  </head>
+  <body class="shop">
+        <div id="root">
+          <div style="margin-left: 45%; margin-top: 18%">   
+            <div class="loader"  ></div>
+            <h3 style="margin-left: 10px">Loading...</>  
+          </div>
+        </div>
+
+    <!-- jquery -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+    <!-- map -->
+    <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
+    <script src="/js/leaflet-search.min.js"></script>
+    <script src="/js/leaflet-stripes.min.js"></script>
+
+    <!--load data from google spreadsheet-->
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/tabletop.js/1.5.1/tabletop.min.js" ></script>-->
+    
+    <!-- gejson data -->
+    <script src= "/geojson/turnout.geojson"></script>
+    <script src= "/geojson/delegations.geojson"></script>
+    <script src= "/geojson/OldDelegationTurnout.geojson"></script>
+    <script src= "/geojson/inexistant_invalid_delegation_data.geojson"></script>
+    <script src= "/geojson/existant_invalid_delegation_data.geojson"></script>
+    <script src= "/geojson/municipalities/municipalities_shape.js"></script>
+
+    <!-- municipalities geojson -->
+    <!--<script src= "/geojson/municipalities/ariana.geojson"></script>-->
+    <!--<script src= "/geojson/municipalities/kairouan.geojson"></script>-->
+    <!-- municipalities nameList -->
+
+    <!-- parralax -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/parallax/2.1.3/jquery.parallax.min.js" ></script>
+    <!-- bootstrap -->
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.3.7/js/tether.min.js"></script>
+    <!--<script src="https://unpkg.com/react-leaflet/dist/react-leaflet.min.js"></script>
+    <script src="https://unpkg.com/recharts/umd/Recharts.min.js"></script> -->
+   <!-- bundle -->
+    <script src="/bundle.js"></script>
+
+  </body>
+</html>

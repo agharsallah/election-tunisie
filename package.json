@@ -1,0 +1,44 @@
+{
+  "name": "TunisieElection",
+  "version": "0.1.0",
+  "description": "website about municipal election ",
+  "author": "Abderrahmen gharsallah",
+  "license": "ISC",
+  "scripts": {
+    "start": "webpack-dev-server --progress",
+    "build": "set NODE_ENV=production && webpack -p --progress --colors"
+  },
+  "devDependencies": {
+    "babel-core": "~6.7.*",
+    "babel-loader": "~6.2.*",
+    "babel-preset-es2015": "~6.6.*",
+    "babel-preset-react": "~6.5.*",
+    "css-loader": "^0.23.1",
+    "node-sass": "^3.13.1",
+    "react-hot-loader": "^3.0.0-beta.6",
+    "sass-loader": "^4.1.1",
+    "style-loader": "^0.13.1",
+    "webpack": "~1.12.*",
+    "webpack-dev-server": "~1.14.*",
+    "less": "^2.5.1",
+    "less-loader": "^2.2.0",
+    "less-plugin-autoprefix": "^1.5.1",
+    "postcss-loader": "^0.6.0"
+  },
+  "dependencies": {
+    "counterpart": "^0.17.6",
+    "lodash": "^4.17.2",
+    "material-ui": "^0.16.1",
+    "react": "^15.4.1",
+    "react-big-calendar": "^0.13.0",
+    "react-dom": "^15.4.1",
+    "react-interpolate-component": "^0.10.0",
+    "react-leaflet": "^1.1.6",
+    "react-leaflet-control": "^1.3.0",
+    "react-router": "^3.0.0",
+    "react-router-active-component": "^4.0.0",
+    "react-router-dom": "^4.1.1",
+    "react-tap-event-plugin": "^2.0.1",
+    "react-translate-component": "^0.13.1"
+  }
+}
