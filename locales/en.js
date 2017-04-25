@@ -40,7 +40,7 @@ module.exports = {
     electiondata:{
       TBlankByDelegation:'Blank  | Canceled - by delegation',
       SBlankByDelegation:'Visualizing the ballots during Tunisia Parliamentary elections and presidential elections round 1',
-      TballotState:'Invalid Ballot - by delegation ',
+      TballotState:'Invalid Ballot  ',
       STballotState:'Visualizing blank,spoiled,and canceled ballots during Tunisia parliamentary elections and presidential elections round 1',
       TAgeTurnoutDelegation:'Age Turnout -detailed- by delegation ',
       SAgeTurnoutDelegation:'Visualizing Turnout level per age during ...',
@@ -225,7 +225,12 @@ nca:"2011 NCA Elections"
       description17:"Late date of final results announcement  ",
       date17:"Wednesday 24 January",
       year17:"2018",
-    }
-  
+    },
+    viz:{
+      nav_title:"Various Vizualizations (delegation level)"
+  },
+  card:{
+
+  }
 
 }

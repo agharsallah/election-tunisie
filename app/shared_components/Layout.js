@@ -37,7 +37,7 @@ class Layout extends Component {
                     <span className="icon-bar"></span>
                     <span className="icon-bar"></span>
                 </button>
-                <a className="navbar-brand" href="#">TunisieElection</a>
+                <Link className="navbar-brand" to='/' >TunisieElection</Link>
                 </div>
                 <div className="navbar-collapse collapse">
                 <ul className="nav navbar-nav navbar-right">

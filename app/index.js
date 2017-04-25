@@ -11,7 +11,7 @@ render((
     <div>
         <Route  path="/" component={Home}/> 
         <Route path="/viz" component={VizRoot}/> 
-        <Route path="/municipalities/all" component={MunicipalitiesRoot}/> 
+        <Route path="/Municipalities/:municipalitymap" component={MunicipalitiesRoot}/> 
         </div>
     </Router>
     </MuiThemeProvider>

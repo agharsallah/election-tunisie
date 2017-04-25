@@ -195,3 +195,25 @@ a:after {
 	font-size: 12px;
 	padding: 5px;
 }
+#blue {
+	background: #3498db;
+	padding-top: 30px;
+	padding-bottom: 18px;
+}
+#blue h4 {
+	color: white;
+	font-weight: 700;
+}
+
+#blue p {
+	color: white;
+}
+.munradio_all {
+    position: absolute;
+    overflow:hidden;
+    z-index:2;
+    min-width:10%;
+    left: 5%;
+    top: 7%;
+    background-color: rgb(246, 246, 244) !important;
+}
