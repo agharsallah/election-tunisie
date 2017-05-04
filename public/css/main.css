@@ -86,7 +86,10 @@ a:after {
 .navbar-inverse .navbar-nav > .active > a {
 	background: #76b727
 }
+.navbar-inverse .navbar-nav > .active > a:hover {
 
+    background: #76b727
+}
 .navbar-inverse .navbar-brand {
 	color: #999999;
 	font-weight: bolder;
@@ -197,8 +200,8 @@ a:after {
 }
 #blue {
 	background: #3498db;
-	padding-top: 30px;
-	padding-bottom: 18px;
+	padding-top: 15px;
+	padding-bottom: 5px;
 }
 #blue h4 {
 	color: white;
@@ -216,4 +219,78 @@ a:after {
     left: 5%;
     top: 7%;
     background-color: rgb(246, 246, 244) !important;
+}
+/*info legend leaflet*/
+/* map info style */
+.in {
+    font: 14px/16px Arial, Helvetica, sans-serif;
+    background: white;
+    background: rgba(255,255,255,1);
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+}
+.in h4,b,p {
+    color: black !important;
+}
+.legend {
+    line-height: 20px;
+    color: #555;
+    font-size: 14px;
+    margin-left: 15px;
+}
+.legend i {
+    margin-left: 10px;
+    width: 18px;
+    height: 18px;
+    float: left;
+    margin-right: 8px;
+    opacity: 1;
+}
+.legend p {
+margin-bottom: 5px;
+}
+.infoLeg {
+  background-color: white;
+  width: 200px;
+}
+.infoLegar {
+  background-color: white;
+  width: 150px;
+  direction: rtl;
+}
+.divider{
+    height: 2px;
+    border: none;
+    background-color: #337ab7;
+}
+.lefttitle{
+  list-style: none;
+  font-size: 30px;
+  line-height: 1.7;
+  padding-bottom: 8px;
+    border-left: 5px solid #337ab7;
+  padding-left: 15px;
+  margin-bottom: 25px;
+  margin-top: 25px;
+  overflow: hidden
+}
+.controllegend {
+    line-height: 18px;
+    color: #555;
+}
+.controllegend i {
+    width: 18px;
+    height: 18px;
+    float: left;
+    margin-right: 8px;
+    opacity: 0.7;
+}
+.controlinfo {
+    padding: 6px 8px;
+    background: white;
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    border-radius: 5px;
+}
+.controlinfo h4 {
+    margin: 0 0 5px;
+    color: #777;
 }

@@ -10,8 +10,8 @@ render((
     <Router history={browserHistory}>
     <div>
         <Route  path="/" component={Home}/> 
-        <Route path="/viz" component={VizRoot}/> 
-        <Route path="/Municipalities/:municipalitymap" component={MunicipalitiesRoot}/> 
+        <Route path="/viz/:vizId" component={VizRoot}/>
+        <Route path="/Municipalities/:municipalitymap" component={MunicipalitiesRoot}/>
         </div>
     </Router>
     </MuiThemeProvider>

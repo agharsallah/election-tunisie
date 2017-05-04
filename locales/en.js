@@ -38,7 +38,7 @@ module.exports = {
   	p3:' and technical assistance from '
   },
     electiondata:{
-      TBlankByDelegation:'Blank  | Canceled - by delegation',
+      TBlankByDelegation:'Blank  | Canceled ',
       SBlankByDelegation:'Visualizing the ballots during Tunisia Parliamentary elections and presidential elections round 1',
       TballotState:'Invalid Ballot  ',
       STballotState:'Visualizing blank,spoiled,and canceled ballots during Tunisia parliamentary elections and presidential elections round 1',
@@ -51,9 +51,12 @@ module.exports = {
   	  TTurnoutPresedential:'Presidential Turnout - by delegation ',
       STurnoutPresedential:'Visualizing TGeneral Turnout percentage during Presedential election',
       invalidTitle:"Invalid Ballots",
-    ageturnTitle:"Age Turnout",
-    sexturnTitle:"Gender Turnout",
-        readmore:"readmore"
+      ageturnTitle:"Age Turnout",
+      sexturnTitle:"Gender Turnout",
+        readmore:"readmore",
+      RegistrationTitle:"Registration Level",
+      TRegistration:"Rgistration ",
+      SRegistration:"Visualizing the proportion of actively registered voters out of the eligible voting population"
   },
   electionresult:{
     pres:"2014 Presidential Elections",
@@ -142,7 +145,9 @@ nca:"2011 NCA Elections"
       canceledv:"canceled",
       blankv:"blank",     
       spoiledv:"spoiled",
-      fizzySearch:"Type a governorate name or Click on the map"
+      fizzySearch:"Type a governorate name or Click on the map",
+      registration_title:"Active Registred Voters ",
+
   },
     radioComp:{
       all:"All",

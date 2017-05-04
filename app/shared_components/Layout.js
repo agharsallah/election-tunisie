@@ -43,7 +43,7 @@ class Layout extends Component {
                 <ul className="nav navbar-nav navbar-right">
                     <NavItem to='/' >{home}</NavItem>
                     <NavItem to='/municipalities/all'  >{local_election}</NavItem>
-                    <NavItem to='/viz' >{Viz}</NavItem>
+                    <NavItem to='/viz/all' >{Viz}</NavItem>
                     <li className="dropdown">
                         <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Language<span className="caret"></span></a>
                         <ul className="dropdown-menu">
