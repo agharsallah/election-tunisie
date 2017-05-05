@@ -5,13 +5,13 @@ const MapKey = (props)=>{
 
     return(
            <div className="infoLeg legend">
-                <p style={{marginLeft:"10px"}}>Map Key</p>
+                <p style={{marginLeft:"10px"}}>% of Active Registered Voters</p>
                 {grades.map(function(object, i){
                     const bg=getColor(object + 1)
                     return (
-                            <div >
-                                <i style={{background:bg}} ></i>
-                                {(grades[i + 1] ? ('< ' + grades[i]): '+ '+grades[i]) }
+                            <div key={i}>
+                                <i style={{background:bg}}  ></i>
+                                {(grades[i + 1] ? (grades[i]+' - '+grades[i+1]+' %' ): '+ '+grades[i]+' %') }
                                 <br/>
                             </div>
                         )

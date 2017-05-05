@@ -1,83 +1,41 @@
 import React, { Component } from 'react';
-import { Map, Popup, TileLayer, GeoJSON, FeatureGroup, Tooltip,LayersControl } from 'react-leaflet';
-import Control from 'react-leaflet-control';
-import MapKey from './MapKey.js';
-import PieChart from './PieChart'
+import RegistrationMap from './RegistrationMap'
+
+import Translate from 'react-translate-component';
+import SelectField from 'material-ui/SelectField';
+import MenuItem from 'material-ui/MenuItem';
+
 class RegistrationRoot extends Component {
     constructor(props){
         super(props);
-        this.state={feature:""}
+                this.state={value:"canceled"} ;
     }
-    getColor(d) {
-	    return d > 10000 ? '#000000' :
-	           d > 5000  ? '#2c7fb8' :
-	           d > 2500  ? '#81D4FA' :
-	           d > 1000  ? '#B3E5FC' :
-	           d == 'inexistant'? '#dddddd' :
-	                      '#B2DFDB';
-	}
-    style(feature) {
-	    return {
-            fillColor: this.getColor(feature.properties.registred11),
-	        weight: 1.5,
-	        opacity: 1,
-	        fillOpacity: 1,
-            color:'white'
-	    };
-	}
-    highlightFeature(e) {
-	    var layer = e.target;
-     this.setState({feature:layer.feature.properties.registred11});
-    return layer.setStyle({
-        weight: 3,
-        color: '#666',
-        dashArray: '',
-        fillOpacity: 1
-    });
-
-	}
-    resetFeature(e) {
-	    var layer = e.target;
-	    layer.setStyle({
-	        weight: 2,
-	    });
-        this.setState({feature:""});
-	}
+    handleChange (event, index, value){this.setState({value})};
+ 
     render() {
-        const position = [35.055360, 10.99795];
-        const grades = [1000, 2500, 5000, 10000 ];
-        return (
-            <div>
-        <Map maxZoom={18} center={position} zoom={7} className="initialposition" style={{height:550,position:"relative",zIndex:0}}>
-                    <TileLayer
-                    url='https://api.mapbox.com/styles/v1/mapbox/streets-v10/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiaHVudGVyLXgiLCJhIjoiY2l2OXhqMHJrMDAxcDJ1cGd5YzM2bHlydSJ9.jJxP2PKCIUrgdIXjf-RzlA'
-                    attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-                    />
-                    <GeoJSON data= {G_Pv_Parlimentary}   
-                            style={this.style.bind(this)}    
-                            onEachFeature={
-                                (feature, layer) => {
-                                    layer.bindPopup(feature.properties.NAME_EN);
-                                    layer.on({mouseover: this.highlightFeature.bind(this)});
-                                    layer.on({mouseout: this.resetFeature.bind(this)});
-                                }
-                            }
+    
+    return(
+        <div style={{position:"relative"}}>
+            <div className="munradio_all">
+                <SelectField
+                    floatingLabelText={<Translate content="map.chooseParameter"/>}
+                    value={this.state.value}
+                    onChange={this.handleChange.bind(this)}
+                    style = {{width:"200px",marginLeft:"10px",float:"right"}}
+                    floatingLabelStyle  ={{color:"#03a9f4",fontSize:"x-large",top:"25px"}}
+                    labelStyle = {{color:"#ff5722",fontSize:"xx-large"}}
+                    iconStyle ={{fill:"#03a9f4",top:"10px",height:"47px",width:"65px"}}
                     >
-                        <Tooltip>
-                            <span>{this.state.feature}</span>
-                        </Tooltip>
-                    </GeoJSON>
-                    <Control position="topright" >
-                       <PieChart/>
-                    </Control>
-                    <Control position="bottomright" >
-                        <MapKey grades={grades} getColor={this.getColor} />
-                    </Control>
-
-                </Map>
-                
+                        <MenuItem value={"canceled"} primaryText={<Translate content="map.canceledv"/>} />
+                        <MenuItem value={"blank"} primaryText={<Translate content="map.blankv"/>} />
+                        <MenuItem value={"spoiled"} primaryText={<Translate content="map.spoiledv"/>} />
+                </SelectField>
             </div>
-        );
+
+             <RegistrationMap style={{position:"absolute"}} value={this.state.value}/>
+        </div>
+    )
+        
     }
 }
 
