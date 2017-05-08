@@ -74,7 +74,7 @@ class AllMunicipalities extends Component{
 		}
 		function onEachFeature_mun(feature, layer) {
 		let mun_name = feature.properties.name_en;
-       layer.bindTooltip(mun_name.charAt(0).toUpperCase()+ mun_name.slice(1),{ permanent: false,className:"tooltipnamear" })
+       layer.bindTooltip(mun_name.charAt(0).toUpperCase()+ mun_name.slice(1),{ permanent: false})
 					layer.on('click', function(e) {
 				var map = e.target._map
 				var link='/Municipalities/'+feature.properties.circ;
@@ -173,7 +173,7 @@ class AllMunicipalities extends Component{
 		}
 		function onEachFeature_mun(feature, layer) {
 			let mun_name = feature.properties.name_en;
-		layer.bindTooltip(mun_name.charAt(0).toUpperCase()+ mun_name.slice(1),{ permanent: false,className:"tooltipnamear" })
+		layer.bindTooltip(mun_name.charAt(0).toUpperCase()+ mun_name.slice(1),{ permanent: false })
 					layer.on('click', function(e) {
 				var map = e.target._map
 				var link='/Municipalities/'+feature.properties.circ;

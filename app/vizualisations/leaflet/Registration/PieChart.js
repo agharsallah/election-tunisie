@@ -5,8 +5,18 @@ class PieChart extends Component {
         super(props);
     }
     componentWillReceiveProps(nextProps) {
+        let RegistrationPercentage,Rgistred,PotentialVoters11;
+        if (nextProps.ElectionYear=="2011") {
+            RegistrationPercentage=parseInt(nextProps.RegPer11);
+            Rgistred=nextProps.registred11;
+            PotentialVoters11=nextProps.potentialVoters11;
+        }else{
+            RegistrationPercentage=parseInt(nextProps.RegPer14);
+            Rgistred=nextProps.registred14;
+            PotentialVoters11=nextProps.potentialVoters14;
+        }
         if (nextProps.destroy==false){
-         this.chart = new Highcharts[this.props.type || "Chart"]('container',{
+         this.chart = new Highcharts["Chart"]('container',{
                 credits: {
                     enabled: false
                 },
@@ -46,12 +56,12 @@ class PieChart extends Component {
                     data: [
                         {
                             name: 'Registered',
-                            y: parseInt(nextProps.RegPer11),
-                            l:nextProps.registred,
+                            y: RegistrationPercentage,
+                            l:Rgistred,
                             sliced: true,
                             selected: true
                         },
-                        { name: 'Eligible non registered Voters',l:nextProps.potentialVoters, y: parseInt(100-nextProps.RegPer11)}
+                        { name: 'Eligible non registered Voters',l:PotentialVoters11, y: parseInt(100-RegistrationPercentage)}
                     
                     
                     ]
@@ -59,7 +69,7 @@ class PieChart extends Component {
             }
             );    
         }else{
-
+            this.chart.destroy();
         }
     }
  

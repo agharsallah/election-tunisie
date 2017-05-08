@@ -236,6 +236,11 @@ nca:"2011 NCA Elections"
   },
   card:{
 
+  },
+  RegistrationMap:{
+    parlimantary:"parlimantary 2014",
+    _2011:"NCA 2011",
+    ElectionYear:"Choose Election Year"
   }
 
 }
