@@ -31,15 +31,15 @@ class RegistrationMap extends Component {
         return {
             fillColor: this.getColor(RegistrationPercentage),
 	         weight: 1.5,
-		        opacity: 0.8,
+		        opacity: 1,
 		        color: 'white',
-		        fillOpacity: 0.8
+		        fillOpacity: 1
 	    };
 	}
     styleDistricts(feature) {
         return {
-	        weight: 3,
-			        color: 'black',
+	        weight: 4,
+			        color: 'grey',
 			        fillOpacity: 0
 	    };
 	}
