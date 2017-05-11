@@ -3,25 +3,33 @@ import { Map, Popup, TileLayer, GeoJSON, FeatureGroup, Tooltip,LayersControl } f
 import Control from 'react-leaflet-control';
 import MapKey from './MapKey.js';
 import PieChart from './PieChart'
+const { BaseLayer, Overlay } = LayersControl;
+
 class RegistrationMap extends Component {
     constructor(props){
         super(props);
-        this.state={ElectionYear:"2011",registred11:"",registred14:"",potentialVoters11:"",potentialVoters14:"",name:"",circname:"",RegPer11:"",RegPer14:"",destroy:true}
+        this.state={GeoLayer:G_Pv_Parlimentary,ElectionYear:"2011",registred11:"",registred14:"",potentialVoters11:"",potentialVoters14:"",name:"",circname:"",RegPer11:"",RegPer14:"",destroy:true}
     }
-    componentWillReceiveProps(nextProps) {
-        this.setState({ElectionYear:nextProps.value});
-    }
-    
-    componentWillMount() {
+    componentWillUnmount() {
         
     }
     
-    getColor(d) {
-	    return d <= 40 ? '#000000' :
-	           d < 50  ? '#2c7fb8' :
-	           d < 60  ? '#81D4FA' :
-	          isNaN(d) ? 'white' :
-	                      '#B2DFDB';
+    componentWillReceiveProps(nextProps) {
+        this.setState({ElectionYear:nextProps.value});
+        if (nextProps.AggToggle=="delegation") {
+            this.setState({GeoLayer:G_Pv_Parlimentary});
+        }else if (nextProps.AggToggle=="district"){
+            this.setState({GeoLayer:G_Pv_Parlimentary});
+        }
+    }
+    
+    getColor(d,c1) {
+        if      (d > 60)      {return (c1[3]); }
+        else if (d > 50)      {return (c1[2]);}
+        else if (d>40)        {return (c1[1]);}
+        else if (isNaN(d))    {return ('white')}
+        else                  {return (c1[0]);}
+	    
 	}
     style(feature) {
         const RegPer11=((feature.properties.registred11*100)/(feature.properties.potentialVoters11));
@@ -29,18 +37,19 @@ class RegistrationMap extends Component {
         let RegistrationPercentage;
         (this.state.ElectionYear=="2011") ? (RegistrationPercentage = RegPer11) : (RegistrationPercentage = RegPer14)       
         return {
-            fillColor: this.getColor(RegistrationPercentage),
-	         weight: 1.5,
-		        opacity: 1,
-		        color: 'white',
-		        fillOpacity: 1
+            fillColor: this.getColor(RegistrationPercentage,this.props.GetSelectedSets),
+	        weight: 0.5,
+		    opacity: 1,
+            dashArray: '0',
+		    color: 'white',
+		    fillOpacity: 0.8
 	    };
 	}
     styleDistricts(feature) {
         return {
-	        weight: 4,
-			        color: 'grey',
-			        fillOpacity: 0
+	        weight: 3,
+			color: 'grey',
+			fillOpacity: 0
 	    };
 	}
     highlightFeature(e) {
@@ -48,7 +57,15 @@ class RegistrationMap extends Component {
         const property = layer.feature.properties;
         const RegPer11=((property.registred11*100)/(property.potentialVoters11));
         const RegPer14=((property.registred14*100)/(property.potentialVoters14));
-    this.setState({RegPer11:RegPer11.toFixed(2),RegPer14:RegPer14.toFixed(2),potentialVoters11:property.potentialVoters11,potentialVoters14:property.potentialVoters14,registred11:property.registred11,registred14:property.registred14,name:property.NAME_EN,circname:property.CIRC_Name,destroy:false});
+    this.setState({RegPer11:RegPer11.toFixed(2),
+                RegPer14:RegPer14.toFixed(2),
+                potentialVoters11:property.potentialVoters11,
+                potentialVoters14:property.potentialVoters14,
+                registred11:property.registred11,
+                registred14:property.registred14,
+                name:property.NAME_EN,
+                circname:property.CIRC_Name,
+                destroy:false});
     return layer.setStyle({
         weight: 3,
         color: '#666',
@@ -62,17 +79,14 @@ class RegistrationMap extends Component {
 	    layer.setStyle({
 	        weight: 2,
 	    });
-        this.setState({registred11:"",registred14:"",potentialVoters11:"",potentialVoters14:"",name:"",circname:"",RegPer11:"",RegPer14:"",destroy:true});
+        this.setState({destroy:true});
 	}
     render() {
         const position = [35.055360, 10.99795];
         const grades = [0,40, 50, 60 ];
+        const GeoLayer = this.state.GeoLayer;
         return (
         <Map maxZoom={18} center={position} zoom={7} className="initialposition" style={{height:550,position:"relative",zIndex:0}}>
-                    <TileLayer
-                    url='https://api.mapbox.com/styles/v1/hunter-x/cixhpey8700q12pnwg584603g/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiaHVudGVyLXgiLCJhIjoiY2l2OXhqMHJrMDAxcDJ1cGd5YzM2bHlydSJ9.jJxP2PKCIUrgdIXjf-RzlA'
-                    attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-                    />
                     <GeoJSON data= {g_districts}  
                     style={this.styleDistricts.bind(this)}  
                     onEachFeature={
@@ -81,7 +95,7 @@ class RegistrationMap extends Component {
                         }    
                     }
                     />
-                    <GeoJSON data= {G_Pv_Parlimentary}   
+                    <GeoJSON data= {GeoLayer}  
                             style={this.style.bind(this)}    
                             onEachFeature={
                                 (feature, layer) => {
@@ -95,11 +109,32 @@ class RegistrationMap extends Component {
                             <span>{this.state.name}</span>
                         </Tooltip>*/}
                     </GeoJSON>
-                    <Control position="topright" >
-                       <PieChart ElectionYear={this.state.ElectionYear} name={this.state.name} circname={this.state.circname} registred14={this.state.registred14} registred11={this.state.registred11} potentialVoters14={this.state.potentialVoters14} potentialVoters11={this.state.potentialVoters11} RegPer11={this.state.RegPer11} RegPer14={this.state.RegPer14} destroy={this.state.destroy} />
+                    
+                    <div className="two-elm-container">
+                    
+                     <Control position="topright"  >
+                       {(this.state.destroy==false)?<PieChart ElectionYear={this.state.ElectionYear} name={this.state.name} circname={this.state.circname} registred14={this.state.registred14} registred11={this.state.registred11} potentialVoters14={this.state.potentialVoters14} potentialVoters11={this.state.potentialVoters11} RegPer11={this.state.RegPer11} RegPer14={this.state.RegPer14} destroy={this.state.destroy} />:<div></div>}
                     </Control>
+                     
+                    <LayersControl position="topright" className="one">
+                        <BaseLayer checked name="OpenStreetMap.BlackAndWhite">
+                                <TileLayer
+                                attribution="Leaflet"
+                                url="https://api.mapbox.com/styles/v1/hunter-x/cixhpey8700q12pnwg584603g/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiaHVudGVyLXgiLCJhIjoiY2l2OXhqMHJrMDAxcDJ1cGd5YzM2bHlydSJ9.jJxP2PKCIUrgdIXjf-RzlA"
+                                />
+                        </BaseLayer>
+                        <BaseLayer  name="OpenStreetMap.Mapnik">
+                            <TileLayer
+                                attribution="Leaflet"
+                            url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"
+                            />
+                        </BaseLayer>
+                    </LayersControl>
+
+                </div>
+
                     <Control position="bottomright" >
-                            <MapKey grades={grades} getColor={this.getColor} />
+                            <MapKey grades={grades} getColor={this.getColor} selectedSet={this.props.GetSelectedSets} />
                     </Control>
         </Map>
         );

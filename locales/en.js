@@ -240,7 +240,11 @@ nca:"2011 NCA Elections"
   RegistrationMap:{
     parlimantary:"parlimantary 2014",
     _2011:"NCA 2011",
-    ElectionYear:"Choose Election Year"
+    ElectionYear:"Choose Election Year",
+    Agreggation:"Choose Aggregation Level",
+    Delegation:"Delegation",
+    District:"District",
+    VC:"Voting Center",
   }
 
 }

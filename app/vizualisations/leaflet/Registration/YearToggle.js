@@ -6,8 +6,8 @@ import Translate from 'react-translate-component';
 class YearToggle extends Component {
     render() {
         return (
-             <Paper zDepth={5}  className="munradio_all" >
-                <h4 style={{marginLeft:"10px",marginBottom:"15px",fontWeight:"600",marginRight:"25px"}}>
+             <div className="yeartoggle" style={{ left: "1%",top: "15%"}} >
+                <h4 style={{marginLeft:"10px",marginBottom:"15px",fontWeight:"600",marginRight:"25px",width:"220px"}}>
                     {<Translate content="RegistrationMap.ElectionYear"/>}
                 </h4> 
 	            <RadioButtonGroup onChange={this.props.HandleYear}  name="Electionyear" defaultSelected="2011" style={{marginLeft:"10px"}} >
@@ -25,7 +25,7 @@ class YearToggle extends Component {
 					/>
 					
 				</RadioButtonGroup>
-             </Paper>
+             </div>
         );
     }
 }

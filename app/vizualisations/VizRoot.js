@@ -10,6 +10,7 @@ import Divider from 'material-ui/Divider';
 import InvalidVotes from './leaflet/InvalidVotes';
 import CanceledVotes from './leaflet/CanceledVotes';
 import RegistrationRoot from './leaflet/Registration/RegistrationRoot';
+import RegistrationSocioRoot from './Bubble/Registration/RegistrationSocioRoot';
 class VizRoot extends Component {
     constructor(props) {
         super(props);
@@ -117,7 +118,22 @@ class VizRoot extends Component {
                         <RegistrationRoot/>
                     </div>
                 )
-                break; 
+                break;
+                case 'bubble':
+                    return(
+                        <div>
+                            <Layout/>
+                        <div id="blue">
+                                <div className="container">
+                                    <div className="row centered">
+                                        <h4>bubble</h4>
+                                    </div>
+                                </div>
+                            </div>
+                            <RegistrationSocioRoot/>
+                        </div>
+                    )
+                    break; 
 			default:
                 console.log('err');
         }

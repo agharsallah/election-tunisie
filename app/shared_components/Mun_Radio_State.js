@@ -6,7 +6,7 @@ import Translate from 'react-translate-component';
 
 const Mun_Radio_State = (props)=>{
 	return(
-			<div className={props.style} >
+			<div className={props.style}>
 	            <RadioButtonGroup onChange={props.handleMunState}  name="etatmun" defaultSelected="all" style={{marginLeft:"10px"}} >
 					<RadioButton
 					labelStyle={{color:'black'}}

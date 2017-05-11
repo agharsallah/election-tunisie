@@ -49,8 +49,8 @@ class MunicipalitiesRoot extends Component {
                     </div>
                     <div  style={{position:"relative"}}>
                         
-                        <Paper zDepth={5}  className="munradio_all" >
-                            <Mun_Radio_State  handleMunState={this.handleMunState.bind(this)} style="allmunradio"/>
+                        <Paper zDepth={5}  className="munradio_all"  style={{ left: "5%",top: "7%"}}  >
+                            <Mun_Radio_State  handleMunState={this.handleMunState.bind(this)} />
                         </Paper>
                     <AllMunicipalities style={{position:"absolute",zIndex:"1"}} value={this.state.munstate}/>
                     </div>
