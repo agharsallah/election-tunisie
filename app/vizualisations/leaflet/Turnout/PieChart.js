@@ -12,15 +12,18 @@ class PieChart extends Component {
     
     
     componentDidMount() {
-        let RegistrationPercentage,Rgistred,PotentialVoters11;
+        let Turnout,potentialVoters,SigningVoters,TurnoutTitle;
         if (this.props.ElectionYear=="2011") {
-            RegistrationPercentage=parseInt(this.props.RegPer11);
-            Rgistred=this.props.registred11;
-            PotentialVoters11=this.props.potentialVoters11;
+            !isNaN (this.props.Turnout11) ?TurnoutTitle=parseFloat(this.props.Turnout11)+' %':TurnoutTitle="does not exist";
+            Turnout=parseFloat(this.props.Turnout11);
+            potentialVoters=this.props.potentialVoters11;
+            SigningVoters=this.props.SigningVoters11;
         }else{
-            RegistrationPercentage=parseInt(this.props.RegPer14);
-            Rgistred=this.props.registred14;
-            PotentialVoters11=this.props.potentialVoters14;
+            !isNaN (this.props.Turnout14) ?TurnoutTitle=parseFloat(this.props.Turnout14)+' %':TurnoutTitle="does not exist";
+            Turnout=parseFloat(this.props.Turnout14);
+            console.log(Turnout)
+            potentialVoters=this.props.potentialVoters11;
+            SigningVoters=this.props.SigningVoters14;
         }
          this.charts = new Highcharts["Chart"]('container',{
                 credits: {
@@ -40,7 +43,8 @@ class PieChart extends Component {
                     type: 'pie'
                 },
                 title: {
-                    text: this.props.name +' ('+this.props.circname+' )'
+                    text: this.props.name +' ('+this.props.circname+' )<br/>'+ '<br/> '+TurnoutTitle,
+                     margin: 10
                 },
                 tooltip: {
                     pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
@@ -61,19 +65,22 @@ class PieChart extends Component {
                     name: 'Percentage',
                     data: [
                         {
-                            name: 'Registered',
-                            y: RegistrationPercentage,
-                            l:Rgistred,
+                            name: 'Non Voters',
+                            y: parseFloat(100-Turnout),
+                            l:(((100-Turnout)*SigningVoters)/Turnout).toFixed(0),
                             sliced: true,
-                            selected: true
+                            selected: true,
                         },
-                        { name: 'Eligible non registered Voters',l:PotentialVoters11-Rgistred, y: parseInt(100-RegistrationPercentage)}
+                        { name: 'Sign in Voters',l:SigningVoters, y: Turnout}
                     
                     
                     ]
                 }]
             }
-            );    
+            );
+             Highcharts.setOptions({
+                colors: ['#ED561B','#50B432', '#DDDF00', '#24CBE5', '#64E572', '#FF9655', '#FFF263',      '#6AF9C4']
+             });    
 
     }
     

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Layout from './../shared_components/Layout.js'
 import Card from './../shared_components/Card.js'
+import SmallTitle from './../shared_components/SmallTitle.js'
 import Translate from 'react-translate-component';
 
 import SelectField from 'material-ui/SelectField';
@@ -10,6 +11,8 @@ import Divider from 'material-ui/Divider';
 import InvalidVotes from './leaflet/InvalidVotes';
 import CanceledVotes from './leaflet/CanceledVotes';
 import RegistrationRoot from './leaflet/Registration/RegistrationRoot';
+import TurnoutRoot from './leaflet/Turnout/TurnoutRoot';
+import TwoMapsRoot from './leaflet/ElectionSocio/TwoMapsRoot';
 import RegistrationSocioRoot from './Bubble/Registration/RegistrationSocioRoot';
 class VizRoot extends Component {
     constructor(props) {
@@ -24,7 +27,15 @@ class VizRoot extends Component {
 		const STballotState = <Translate type="text" content="electiondata.STballotState"/>;
         const TRegistration = <Translate type="text" content="electiondata.TRegistration"/>;
 		const SRegistration = <Translate type="text" content="electiondata.SRegistration"/>;
-		const link = '/viz/';
+
+        const Tturnout = <Translate type="text" content="electiondata.Tturnout"/>;
+		const Sturnout = <Translate type="text" content="electiondata.Sturnout"/>;
+
+		const canceledtitle=<Translate content="map.canceled"/>;
+        const invalid_title=<Translate content="map.invalid_title"/>
+        const registration_title=<Translate content="map.registration_title"/>
+        const socio_election_title=<Translate content="map.socio_election_title"/>
+        const link = '/viz/';
         const  viz = this.props.params.vizId;
         const invalidTranslation= "map."+this.state.value;
 
@@ -33,13 +44,7 @@ class VizRoot extends Component {
                 return(
                     <div>
                         <Layout/>
-                        <div id="blue">
-                                <div className="container">
-                                    <div className="row centered">
-                                    <h4> Various Vizualizations (delegation level)</h4>
-                                    </div>
-                                </div>
-                            </div>
+                         <SmallTitle title="Various Vizualizations (delegation level)"/>   
                         <div className='col-md-12' >
                         </div>
                         <div className='col-md-12' >
@@ -52,6 +57,12 @@ class VizRoot extends Component {
                         <div className='col-md-12' >
                             <h2 className="lefttitle" style={{  marginLeft:'5%'}}><Translate content="electiondata.RegistrationTitle"/> </h2>
                             <Card position='col-md-4' title ={TRegistration} subtitle={SRegistration} imgsrc="registration.png"  link={link} class="blog-card" tag={["Elections","Parlimantary","NCA2011",""]}/>
+                             <hr className="divider" />
+                        </div>
+
+                        <div className='col-md-12' >
+                            <h2 className="lefttitle" style={{  marginLeft:'5%'}}><Translate content="electiondata.TurnoutTitle"/> </h2>
+                            <Card position='col-md-4' title ={Tturnout} subtitle={Sturnout} imgsrc="turnout.png"  link={link} class="blog-card" tag={["Elections","Parlimantary","NCA2011",""]}/>
                         </div>
 
                     </div>
@@ -61,13 +72,8 @@ class VizRoot extends Component {
                 return(
                     <div>
                         <Layout/>
-                        <div id="blue">
-                            <div className="container">
-                                <div className="row centered">
-                                    <h4><Translate content={invalidTranslation}/></h4>
-                                </div>
-                            </div>
-                        </div>
+
+                        <SmallTitle title={canceledtitle}/>   
                         <div style={{position:"relative"}}>
                         <div className="munradio_all">
                             <SelectField
@@ -93,13 +99,7 @@ class VizRoot extends Component {
                 return(
                     <div>
                         <Layout/>
-                       <div id="blue">
-                            <div className="container">
-                                <div className="row centered">
-                                    <h4><Translate content="map.invalid_title"/></h4>
-                                </div>
-                            </div>
-                        </div>
+                        <SmallTitle title={invalid_title}/> 
                         <InvalidVotes/>
                     </div>
                 )
@@ -108,14 +108,18 @@ class VizRoot extends Component {
                 return(
                     <div>
                         <Layout/>
-                       <div id="blue">
-                            <div className="container">
-                                <div className="row centered">
-                                    <h4><Translate content="map.registration_title"/></h4>
-                                </div>
-                            </div>
-                        </div>
+                        <SmallTitle title={registration_title}/>
                         <RegistrationRoot/>
+                    </div>
+                )
+                break;
+                case '2maps':
+                return(
+                    <div>
+                        <Layout/>
+                      
+                        <SmallTitle title={socio_election_title}/>
+                        <TwoMapsRoot/>
                     </div>
                 )
                 break;
@@ -131,6 +135,15 @@ class VizRoot extends Component {
                                 </div>
                             </div>
                             <RegistrationSocioRoot/>
+                        </div>
+                    )
+                    break;
+                    case 'turnout':
+                    return(
+                        <div>
+                            <Layout/>
+                            <SmallTitle title={Tturnout}/>
+                            <TurnoutRoot/>
                         </div>
                     )
                     break; 

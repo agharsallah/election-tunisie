@@ -67,7 +67,7 @@ class PieChart extends Component {
                             sliced: true,
                             selected: true
                         },
-                        { name: 'Eligible non registered Voters',l:PotentialVoters11-Rgistred, y: parseInt(100-RegistrationPercentage)}
+                        { name: 'Eligible non registered Voters',l:PotentialVoters11, y: parseInt(100-RegistrationPercentage)}
                     
                     
                     ]

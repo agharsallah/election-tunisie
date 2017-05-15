@@ -5,10 +5,10 @@ import MapKey from './MapKey.js';
 import PieChart from './PieChart'
 const { BaseLayer, Overlay } = LayersControl;
 
-class RegistrationMap extends Component {
+class TurnoutMap extends Component {
     constructor(props){
         super(props);
-        this.state={GeoLayer:G_Pv_Parlimentary,ElectionYear:"2011",registred11:"",registred14:"",potentialVoters11:"",potentialVoters14:"",name:"",circname:"",RegPer11:"",RegPer14:"",destroy:true}
+        this.state={GeoLayer:G_Pv_Parlimentary,ElectionYear:"2011",registred11:"",registred14:"",SigningVoters11:"",SigningVoters14:"",name:"",circname:"",Turnout11:"",Turnout14:"",destroy:true}
     }
     componentWillUnmount() {
         
@@ -32,12 +32,12 @@ class RegistrationMap extends Component {
 	    
 	}
     style(feature) {
-        const RegPer11=((feature.properties.registred11*100)/(feature.properties.potentialVoters11));
-        const RegPer14=((feature.properties.registred14*100)/(feature.properties.potentialVoters14));
-        let RegistrationPercentage;
-        (this.state.ElectionYear=="2011") ? (RegistrationPercentage = RegPer11) : (RegistrationPercentage = RegPer14)       
+        const Turnout11=((feature.properties.SigningVoters11*100)/(feature.properties.potentialVoters11));
+        const Turnout14=((feature.properties.SigningVoters14*100)/(feature.properties.potentialVoters14));
+        let Turnout;
+        (this.state.ElectionYear=="2011") ? (Turnout = Turnout11) : (Turnout = Turnout14)       
         return {
-            fillColor: this.getColor(RegistrationPercentage,this.props.GetSelectedSets),
+            fillColor: this.getColor(Turnout,this.props.GetSelectedSets),
 	        weight: 0.5,
 		    opacity: 1,
             dashArray: '0',
@@ -55,14 +55,18 @@ class RegistrationMap extends Component {
     highlightFeature(e) {
 	    var layer = e.target;
         const property = layer.feature.properties;
-        const RegPer11=((property.registred11*100)/(property.potentialVoters11));
-        const RegPer14=((property.registred14*100)/(property.potentialVoters14));
-    this.setState({RegPer11:RegPer11.toFixed(2),
-                RegPer14:RegPer14.toFixed(2),
+        let Turnout11=((property.SigningVoters11*100)/(property.potentialVoters11)).toFixed(1);
+        let Turnout14=((property.SigningVoters14*100)/(property.potentialVoters14)).toFixed(1);
+        console.log(Turnout14)
+        !isNaN(Turnout14) ?(Turnout14=Turnout14):(Turnout14="doesen't exist")
+        !isNaN(Turnout11) ?(Turnout11=Turnout11):(Turnout11="doesen't exist")
+
+    this.setState({Turnout11:Turnout11,
+                Turnout14:Turnout14,
+                SigningVoters11:property.SigningVoters11,
+                SigningVoters14:property.SigningVoters11,
                 potentialVoters11:property.potentialVoters11,
                 potentialVoters14:property.potentialVoters14,
-                registred11:property.registred11,
-                registred14:property.registred14,
                 name:property.NAME_EN,
                 circname:property.CIRC_Name,
                 destroy:false});
@@ -82,7 +86,7 @@ class RegistrationMap extends Component {
         this.setState({destroy:true});
 	}
     render() {
-        const position = [35.055360, 10.89795];
+        const position = [35.055360, 10.19795];
         const grades = [0,40, 50, 60 ];
         const GeoLayer = this.state.GeoLayer;
         return (
@@ -113,7 +117,7 @@ class RegistrationMap extends Component {
                     <div className="two-elm-container">
                     
                      <Control position="topright"  >
-                       {(this.state.destroy==false)?<PieChart ElectionYear={this.state.ElectionYear} name={this.state.name} circname={this.state.circname} registred14={this.state.registred14} registred11={this.state.registred11} potentialVoters14={this.state.potentialVoters14} potentialVoters11={this.state.potentialVoters11} RegPer11={this.state.RegPer11} RegPer14={this.state.RegPer14} destroy={this.state.destroy} />:<div></div>}
+                       {(this.state.destroy==false)?<PieChart ElectionYear={this.state.ElectionYear} name={this.state.name} circname={this.state.circname} potentialVoters11={this.state.potentialVoters11} potentialVoters14={this.state.potentialVoters14} SigningVoters11={this.state.SigningVoters11} SigningVoters14={this.state.SigningVoters14} Turnout11={this.state.Turnout11} Turnout14={this.state.Turnout14} destroy={this.state.destroy} />:<div></div>}
                     </Control>
                      
                     <LayersControl position="topright" className="one">
@@ -141,4 +145,4 @@ class RegistrationMap extends Component {
     }
 }
 
-export default RegistrationMap;
+export default TurnoutMap;

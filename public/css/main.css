@@ -324,7 +324,7 @@ background-color: rgba(255, 255, 255, 0);
     position: absolute;
     overflow:hidden;
     z-index:2;
-    min-width:10%;
+    min-width:1px;
 }
 /*--------------*/
 .square {

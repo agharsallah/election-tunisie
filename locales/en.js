@@ -53,11 +53,15 @@ module.exports = {
       invalidTitle:"Invalid Ballots",
       ageturnTitle:"Age Turnout",
       sexturnTitle:"Gender Turnout",
-        readmore:"readmore",
-      RegistrationTitle:"Registration Level",
-      TRegistration:"Rgistration ",
-      SRegistration:"Visualizing the proportion of actively registered voters out of the eligible voting population"
-  },
+      readmore:"readmore",
+      RegistrationTitle:"Registration ",
+      TRegistration:"Rgistration Level",
+      SRegistration:"Visualizing the proportion of actively registered voters out of the eligible voting population",
+      TurnoutTitle:" Turnout ",
+      Tturnout:"Turnou Level",
+      Sturnout:"Visualizing Turnout Level in the 2011 and parlimantary elections"
+  
+},
   electionresult:{
     pres:"2014 Presidential Elections",
 parl:"2014 Parliamentary Elections",
@@ -147,7 +151,7 @@ nca:"2011 NCA Elections"
       spoiledv:"spoiled",
       fizzySearch:"Type a governorate name or Click on the map",
       registration_title:"Active Registred Voters ",
-
+      socio_election_title:"SocioEconomic and Election"
   },
     radioComp:{
       all:"All",
@@ -240,11 +244,19 @@ nca:"2011 NCA Elections"
   RegistrationMap:{
     parlimantary:"parlimantary 2014",
     _2011:"NCA 2011",
-    ElectionYear:"Choose Election Year",
-    Agreggation:"Choose Aggregation Level",
+    ElectionYear:"Election Year",
     Delegation:"Delegation",
     District:"District",
     VC:"Voting Center",
+  },
+  TwoMaps:{
+    internetuse:"internet Access",
+    illetracy:"Illetracy",
+    sociotitle:"Social Parameter",
+    electionsubject:"Election Parameter",
+    registration:"Registration",
+    turnout:"Turnout",
+    higher_enrolment:"higher Education Enrolement"
   }
 
 }
