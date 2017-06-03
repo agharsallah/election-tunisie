@@ -11,7 +11,7 @@ class Card extends Component {
                 <img className="photo photo1" src={imgsrc} alt="" />
             </div>
             <ul className="details">
-                <li className="author"><Link to={link}>Map</Link></li>
+                <li className="author"><Link to={link}>{this.props.tag[4]}</Link></li>
                 <li className="tags">
                     <ul>
                         <li><Link to={link}>{this.props.tag[0]}</Link></li>

@@ -8,7 +8,7 @@ const { BaseLayer, Overlay } = LayersControl;
 class RegistrationMap extends Component {
     constructor(props){
         super(props);
-        this.state={GeoLayer:G_2maps_ins_data,ElectionYear:"2011",ElectioParameter:"registration",SocialParameter:"internetuse"}
+        this.state={GeoLayer:G_2maps_ins_data,ElectionYear:"2011",ElectioParameter:"registration",SocialParameter:"internetuse",title:"",titleSocio:""}
     }
     componentWillUnmount() {
         
@@ -28,6 +28,14 @@ class RegistrationMap extends Component {
         else                  {return (c1[0]);}
 	    
 	}
+    getColorSocio(d,c1) {
+        if      (d > 40)      {return (c1[3]); }
+        else if (d > 30)      {return (c1[2]);}
+        else if (d>20)        {return (c1[1]);}
+        else if (isNaN(d))    {return ('white')}
+        else                  {return (c1[0]);}
+	    
+	}
     style(feature) {
         const RegPer11=((feature.properties.registred11*100)/(feature.properties.potentialVoters11));
         const RegPer14=((feature.properties.registred14*100)/(feature.properties.potentialVoters14));
@@ -35,13 +43,13 @@ class RegistrationMap extends Component {
         const Turnout14=((feature.properties.SigningVoters14*100)/(feature.properties.potentialVoters14));
         let Percentage;
         if (this.state.ElectionYear=="2011" && this.state.ElectioParameter=="registration") 
-            Percentage=RegPer11;
+            {Percentage=RegPer11;}
         else if (this.state.ElectionYear=="2014" && this.state.ElectioParameter=="registration")
-            Percentage=RegPer14;
+            {Percentage=RegPer14;}
         else if (this.state.ElectionYear=="2011" && this.state.ElectioParameter=="turnout")
-            Percentage=Turnout11;
+            {Percentage=Turnout11;}
         else
-             Percentage=Turnout14;
+             {Percentage=Turnout14;}
 
         return {
             fillColor: this.getColor(Percentage,this.props.GetSelectedSets),
@@ -64,7 +72,7 @@ class RegistrationMap extends Component {
         else if (this.state.SocialParameter=="higher_enrolment")
             percentage=higher_ed;
         return {
-            fillColor: this.getColor(percentage,this.props.GetSelectedSets),
+            fillColor: this.getColorSocio(percentage,this.props.GetSelectedSets),
 	        weight: 0.5,
 		    opacity: 1,
             dashArray: '0',
@@ -75,7 +83,8 @@ class RegistrationMap extends Component {
 
     render() {
         const position = [34.9, 11.9];
-        const grades = [0,40, 50, 60 ];
+        let grades = [0,40, 50, 60 ];
+        let gradesSocio = [0,20, 30, 40 ];
         const GeoLayer = this.state.GeoLayer;
         return (
         <Map maxZoom={18} center={position} zoom={7} className="initialposition" style={{height:550,position:"relative",zIndex:0}} attributionControl={false}>
@@ -109,10 +118,10 @@ class RegistrationMap extends Component {
                 </div>
 
                     <Control position="bottomright" >
-                            <MapKey grades={grades} getColor={this.getColor} selectedSet={this.props.GetSelectedSets} />
+                            <MapKey grades={gradesSocio} getColor={this.getColorSocio} selectedSet={this.props.GetSelectedSets} />
                     </Control>
                      <Control position="bottomleft" >
-                            <MapKey grades={grades} getColor={this.getColor} selectedSet={this.props.GetSelectedSets} />
+                            <MapKey title="% of Active" grades={grades} getColor={this.getColor} selectedSet={this.props.GetSelectedSets} />
                     </Control>
         </Map>
         );

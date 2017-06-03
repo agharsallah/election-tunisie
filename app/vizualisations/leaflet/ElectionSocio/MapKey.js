@@ -20,7 +20,7 @@ class MapKey extends Component {
 
         return (
              <div className="infoLeg legend">
-                <p style={{marginLeft:"10px"}}>% of Active Registered Voters</p>
+                <p style={{marginLeft:"10px"}}>{this.props.title}</p>
                 {grades.map(function(object, i){
                     var bg=getColor(object + 1,this.state.selectedSet)
                     return (

@@ -21,15 +21,19 @@ class VizRoot extends Component {
     }
     handleChange (event, index, value){this.setState({value})};
     render() {
+        /*translation of the cards title & subtitle*/
         const TBlankByDelegation = <Translate type="text" content="electiondata.TBlankByDelegation"/>;
 		const SBlankByDelegation = <Translate type="text" content="electiondata.SBlankByDelegation"/>;
         const TballotState = <Translate type="text" content="electiondata.TballotState"/>;
 		const STballotState = <Translate type="text" content="electiondata.STballotState"/>;
         const TRegistration = <Translate type="text" content="electiondata.TRegistration"/>;
 		const SRegistration = <Translate type="text" content="electiondata.SRegistration"/>;
-
         const Tturnout = <Translate type="text" content="electiondata.Tturnout"/>;
 		const Sturnout = <Translate type="text" content="electiondata.Sturnout"/>;
+        const T2maps = <Translate type="text" content="electiondata.T2maps"/>;
+		const S2maps = <Translate type="text" content="electiondata.S2maps"/>;
+        const Tbubble = <Translate type="text" content="electiondata.Tbubble"/>;
+		const Sbubble = <Translate type="text" content="electiondata.Sbubble"/>;
 
 		const canceledtitle=<Translate content="map.canceled"/>;
         const invalid_title=<Translate content="map.invalid_title"/>
@@ -44,25 +48,32 @@ class VizRoot extends Component {
                 return(
                     <div>
                         <Layout/>
-                         <SmallTitle title="Various Vizualizations (delegation level)"/>   
-                        <div className='col-md-12' >
+                        <div style={{marginBottom: "15px"}}>
+                         <SmallTitle title="Various Vizualizations (delegation level)"  />   
                         </div>
                         <div className='col-md-12' >
-                                 <h2 className="lefttitle" style={{  marginLeft:'5%'}}><Translate content="electiondata.invalidTitle"/> </h2>
-                                <Card position='col-md-4' title ={TballotState} subtitle={STballotState} imgsrc="invalid.png"  link={link} class="blog-card"  tag={["Elections","Parlimantary","",""]}/>					
-                                <Card position='col-md-4' title ={TBlankByDelegation} subtitle={SBlankByDelegation} imgsrc="canceled.png"  link={link} class="blog-card alt" tag={["Elections","Parlimantary","",""]}/>					
+                                <h2 className="lefttitle one" style={{  marginLeft:'5%',marginTop:"12%"}}><Translate content="electiondata.invalidTitle"/> </h2>
+                                <Card  title ={TballotState} subtitle={STballotState} imgsrc="invalid.png"  link={link} class="blog-card"  tag={["Elections","Parlimantary","","","map"]}/>					
+                                <Card  title ={TBlankByDelegation} subtitle={SBlankByDelegation} imgsrc="canceled.png"  link={link} class="blog-card " tag={["Elections","Parlimantary","","","map"]}/>					
                                 <hr className="divider" />
                         </div>
 
                         <div className='col-md-12' >
-                            <h2 className="lefttitle" style={{  marginLeft:'5%'}}><Translate content="electiondata.RegistrationTitle"/> </h2>
-                            <Card position='col-md-4' title ={TRegistration} subtitle={SRegistration} imgsrc="registration.png"  link={link} class="blog-card" tag={["Elections","Parlimantary","NCA2011",""]}/>
+                            <h2 className="lefttitle one " style={{marginLeft:'5%',marginTop:"4%"}}><Translate content="electiondata.RegistrationTitle"/> </h2>
+                            <Card  title ={TRegistration} subtitle={SRegistration} imgsrc="registration.png"  link={link} class="blog-card alt" tag={["Elections","Parlimantary","NCA2011","","map"]}/>
                              <hr className="divider" />
                         </div>
 
                         <div className='col-md-12' >
-                            <h2 className="lefttitle" style={{  marginLeft:'5%'}}><Translate content="electiondata.TurnoutTitle"/> </h2>
-                            <Card position='col-md-4' title ={Tturnout} subtitle={Sturnout} imgsrc="turnout.png"  link={link} class="blog-card" tag={["Elections","Parlimantary","NCA2011",""]}/>
+                            <h2 className="lefttitle one" style={{  marginLeft:'5%',marginTop:"4%"}}><Translate content="electiondata.TurnoutTitle"/> </h2>
+                            <Card  title ={Tturnout} subtitle={Sturnout} imgsrc="turnout.png"  link={link} class="blog-card" tag={["Elections","Parlimantary","NCA2011","","map"]}/>
+                            <hr className="divider" />
+                        </div>
+
+                        <div className='col-md-12' >
+                            <h2 className="lefttitle one" style={{marginLeft:'5%',marginTop:"12%",width:'18%'}}>{socio_election_title} </h2>
+                            <Card  title ={T2maps} subtitle={S2maps} imgsrc="2maps.png"  link={link} class="blog-card alt" tag={["Elections","Parlimantary","NCA2011","socio","map"]}/>
+                            <Card  title ={Tbubble} subtitle={Sbubble} imgsrc="bubble.png"  link={link} class="blog-card alt" tag={["Elections","Parlimantary","NCA2011","socio","bubble chart"]}/>
                         </div>
 
                     </div>
@@ -117,7 +128,6 @@ class VizRoot extends Component {
                 return(
                     <div>
                         <Layout/>
-                      
                         <SmallTitle title={socio_election_title}/>
                         <TwoMapsRoot/>
                     </div>

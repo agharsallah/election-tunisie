@@ -59,8 +59,11 @@ module.exports = {
       SRegistration:"Visualizing the proportion of actively registered voters out of the eligible voting population",
       TurnoutTitle:" Turnout ",
       Tturnout:"Turnou Level",
-      Sturnout:"Visualizing Turnout Level in the 2011 and parlimantary elections"
-  
+      Sturnout:"Visualizing Turnout Level in the 2011 and parlimantary elections",
+      T2maps:"Comparing Election & Socio- economic ",
+      S2maps:"2 maps next to each other to compare between the social economic and election data",
+      Tbubble:"Election & Socio-economic trend ",
+      Sbubble:"Bubble chart to visualize socio economic trend in relation with election data"
 },
   electionresult:{
     pres:"2014 Presidential Elections",

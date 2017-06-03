@@ -26,8 +26,8 @@ export default class App extends Component {
             <div className="container">
               <div className="row centered">
                 <div className="col-lg-8 col-lg-offset-2">
-                <h1>We Bring the Data</h1>
-                <h2>You Analyse it </h2>
+                <h1>Tunisia Elections Data</h1>
+                <h2> </h2>
                 </div>
               </div>
             </div>
