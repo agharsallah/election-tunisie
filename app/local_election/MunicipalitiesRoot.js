@@ -52,13 +52,14 @@ class MunicipalitiesRoot extends Component {
                         <Paper zDepth={5}  className="munradio_all"  style={{ left: "5%",top: "7%"}}  >
                             <Mun_Radio_State  handleMunState={this.handleMunState.bind(this)} />
                         </Paper>
-                    <AllMunicipalities style={{position:"absolute",zIndex:"1"}} value={this.state.munstate}/>
+                        <AllMunicipalities style={{position:"absolute",zIndex:"1"}} value={this.state.munstate}/>
                     </div>
                     </div>
                 );
 			break; 
 			default:
                 return(
+                        
                        <MunicipalityMap  style={{position:"absolute"}} value={this.state.munstate} munname={city} zoom={zoom}  />
                 );
         }

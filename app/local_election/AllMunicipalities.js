@@ -23,7 +23,6 @@ class AllMunicipalities extends Component{
 	}).addTo(this.mymap);
 		
 
-	
 			function getColor(d) {
 				switch(selectedetat){
 					case 'old':
@@ -68,10 +67,6 @@ class AllMunicipalities extends Component{
 		}
 		
 		//------------onEachfeature
-		function onEachFeature(feature, layer) {
-			//control what happens on click
-			layer.bindPopup('</h4></br>'+feature.properties.NAME_1);
-		}
 		function onEachFeature_mun(feature, layer) {
 		let mun_name = feature.properties.name_en;
        layer.bindTooltip(mun_name.charAt(0).toUpperCase()+ mun_name.slice(1),{ permanent: false})
@@ -84,7 +79,6 @@ class AllMunicipalities extends Component{
 	
 	var featuresLayer = new L.GeoJSON(g_districts, {
 				style: style,
-				onEachFeature:onEachFeature
 	}).addTo(this.mymap);
 	
 	var featuresLayer = new L.GeoJSON(g_mun_shapes, {
@@ -110,33 +104,8 @@ class AllMunicipalities extends Component{
 		        fillOpacity: 0.8
 			    };
 		}	
-	   		function onEachFeature(feature, layer) {
-			//control what happens on click
-			layer.bindPopup('</h4></br>'+feature.properties.NAME_1);
-			layer.on('click', function(e) {
-				var map = e.target._map
-				var link='/Municipalities/'+feature.properties.NAME_1;
- 				browserHistory.push(link);
-        	});
 
-		}
-	    var info = L.control();
 
-			info.onAdd = function (map) {
-			    this._div = L.DomUtil.create('div', 'infoLegend'); // create a div with a class "info"
-			    this.update();
-			    return this._div;
-			};
-
-		// -------method that we will use to update the control based on feature properties passed
-
-			info.update = function (props) {
-			    this._div.innerHTML =  (props ?
-			        '<p class="mapInfoText" style="margin-top:150px"  >'+props.name_en +'<p/>'
-			        : '');
-			    };
-
-			info.addTo(this.mymap);
 
 
 	}
@@ -153,7 +122,6 @@ class AllMunicipalities extends Component{
 	
 		var featuresLayer = new L.GeoJSON(g_districts, {
 				style: style,
-				onEachFeature:onEachFeature
 	}).addTo(this.mymap);
 	var featuresLayer = new L.GeoJSON(g_mun_shapes, {
 				style: stylemunicipality,
@@ -167,10 +135,7 @@ class AllMunicipalities extends Component{
 	           d == "extended" ? '#21759b' :
 	                      'red';
 	}
-		function onEachFeature(feature, layer) {
-			//control what happens on click
-			layer.bindPopup('</h4></br>'+feature.properties.NAME_1);
-		}
+
 		function onEachFeature_mun(feature, layer) {
 			let mun_name = feature.properties.name_en;
 		layer.bindTooltip(mun_name.charAt(0).toUpperCase()+ mun_name.slice(1),{ permanent: false })
